@@ -3,16 +3,21 @@ using Application.Features.Bootcamps.Rules;
 using Application.Services.Repositories;
 using AutoMapper;
 using Domain.Entities;
+using MediatR;
 using NArchitecture.Core.Application.Pipelines.Authorization;
 using NArchitecture.Core.Application.Pipelines.Caching;
 using NArchitecture.Core.Application.Pipelines.Logging;
 using NArchitecture.Core.Application.Pipelines.Transaction;
-using MediatR;
 using static Application.Features.Bootcamps.Constants.BootcampsOperationClaims;
 
 namespace Application.Features.Bootcamps.Commands.Update;
 
-public class UpdateBootcampCommand : IRequest<UpdatedBootcampResponse>, ISecuredRequest, ICacheRemoverRequest, ILoggableRequest, ITransactionalRequest
+public class UpdateBootcampCommand
+    : IRequest<UpdatedBootcampResponse>,
+        ISecuredRequest,
+        ICacheRemoverRequest,
+        ILoggableRequest,
+        ITransactionalRequest
 {
     public int Id { get; set; }
     public string Name { get; set; }
@@ -33,8 +38,11 @@ public class UpdateBootcampCommand : IRequest<UpdatedBootcampResponse>, ISecured
         private readonly IBootcampRepository _bootcampRepository;
         private readonly BootcampBusinessRules _bootcampBusinessRules;
 
-        public UpdateBootcampCommandHandler(IMapper mapper, IBootcampRepository bootcampRepository,
-                                         BootcampBusinessRules bootcampBusinessRules)
+        public UpdateBootcampCommandHandler(
+            IMapper mapper,
+            IBootcampRepository bootcampRepository,
+            BootcampBusinessRules bootcampBusinessRules
+        )
         {
             _mapper = mapper;
             _bootcampRepository = bootcampRepository;
@@ -43,7 +51,10 @@ public class UpdateBootcampCommand : IRequest<UpdatedBootcampResponse>, ISecured
 
         public async Task<UpdatedBootcampResponse> Handle(UpdateBootcampCommand request, CancellationToken cancellationToken)
         {
-            Bootcamp? bootcamp = await _bootcampRepository.GetAsync(predicate: b => b.Id == request.Id, cancellationToken: cancellationToken);
+            Bootcamp? bootcamp = await _bootcampRepository.GetAsync(
+                predicate: b => b.Id == request.Id,
+                cancellationToken: cancellationToken
+            );
             await _bootcampBusinessRules.BootcampShouldExistWhenSelected(bootcamp);
             bootcamp = _mapper.Map(request, bootcamp);
 

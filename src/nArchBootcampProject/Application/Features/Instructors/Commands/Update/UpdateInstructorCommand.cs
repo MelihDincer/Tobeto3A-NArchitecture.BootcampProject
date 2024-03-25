@@ -3,16 +3,21 @@ using Application.Features.Instructors.Rules;
 using Application.Services.Repositories;
 using AutoMapper;
 using Domain.Entities;
+using MediatR;
 using NArchitecture.Core.Application.Pipelines.Authorization;
 using NArchitecture.Core.Application.Pipelines.Caching;
 using NArchitecture.Core.Application.Pipelines.Logging;
 using NArchitecture.Core.Application.Pipelines.Transaction;
-using MediatR;
 using static Application.Features.Instructors.Constants.InstructorsOperationClaims;
 
 namespace Application.Features.Instructors.Commands.Update;
 
-public class UpdateInstructorCommand : IRequest<UpdatedInstructorResponse>, ISecuredRequest, ICacheRemoverRequest, ILoggableRequest, ITransactionalRequest
+public class UpdateInstructorCommand
+    : IRequest<UpdatedInstructorResponse>,
+        ISecuredRequest,
+        ICacheRemoverRequest,
+        ILoggableRequest,
+        ITransactionalRequest
 {
     public Guid Id { get; set; }
     public string CompanyName { get; set; }
@@ -29,8 +34,11 @@ public class UpdateInstructorCommand : IRequest<UpdatedInstructorResponse>, ISec
         private readonly IInstructorRepository _instructorRepository;
         private readonly InstructorBusinessRules _instructorBusinessRules;
 
-        public UpdateInstructorCommandHandler(IMapper mapper, IInstructorRepository instructorRepository,
-                                         InstructorBusinessRules instructorBusinessRules)
+        public UpdateInstructorCommandHandler(
+            IMapper mapper,
+            IInstructorRepository instructorRepository,
+            InstructorBusinessRules instructorBusinessRules
+        )
         {
             _mapper = mapper;
             _instructorRepository = instructorRepository;
@@ -39,7 +47,10 @@ public class UpdateInstructorCommand : IRequest<UpdatedInstructorResponse>, ISec
 
         public async Task<UpdatedInstructorResponse> Handle(UpdateInstructorCommand request, CancellationToken cancellationToken)
         {
-            Instructor? instructor = await _instructorRepository.GetAsync(predicate: i => i.Id == request.Id, cancellationToken: cancellationToken);
+            Instructor? instructor = await _instructorRepository.GetAsync(
+                predicate: i => i.Id == request.Id,
+                cancellationToken: cancellationToken
+            );
             await _instructorBusinessRules.InstructorShouldExistWhenSelected(instructor);
             instructor = _mapper.Map(request, instructor);
 

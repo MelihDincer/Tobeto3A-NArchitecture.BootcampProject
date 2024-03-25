@@ -1,4 +1,13 @@
+using Application.Features.Applicants.Constants;
+using Application.Features.ApplicationInformations.Constants;
+using Application.Features.ApplicationStates.Constants;
 using Application.Features.Auth.Constants;
+using Application.Features.BlackLists.Constants;
+using Application.Features.BootcampImages.Constants;
+using Application.Features.Bootcamps.Constants;
+using Application.Features.BootcampStates.Constants;
+using Application.Features.Employees.Constants;
+using Application.Features.Instructors.Constants;
 using Application.Features.OperationClaims.Constants;
 using Application.Features.UserOperationClaims.Constants;
 using Application.Features.Users.Constants;
@@ -6,15 +15,6 @@ using Domain.Entities;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using NArchitecture.Core.Security.Constants;
-using Application.Features.Applicants.Constants;
-using Application.Features.ApplicationInformations.Constants;
-using Application.Features.ApplicationStates.Constants;
-using Application.Features.BlackLists.Constants;
-using Application.Features.Bootcamps.Constants;
-using Application.Features.BootcampImages.Constants;
-using Application.Features.BootcampStates.Constants;
-using Application.Features.Employees.Constants;
-using Application.Features.Instructors.Constants;
 
 namespace Persistence.EntityConfigurations;
 
@@ -106,7 +106,7 @@ public class OperationClaimConfiguration : IEntityTypeConfiguration<OperationCla
         );
         #endregion
 
-        
+
         #region Applicants
         featureOperationClaims.AddRange(
             [
@@ -119,8 +119,8 @@ public class OperationClaimConfiguration : IEntityTypeConfiguration<OperationCla
             ]
         );
         #endregion
-        
-        
+
+
         #region ApplicationInformations
         featureOperationClaims.AddRange(
             [
@@ -133,8 +133,8 @@ public class OperationClaimConfiguration : IEntityTypeConfiguration<OperationCla
             ]
         );
         #endregion
-        
-        
+
+
         #region ApplicationStates
         featureOperationClaims.AddRange(
             [
@@ -147,8 +147,8 @@ public class OperationClaimConfiguration : IEntityTypeConfiguration<OperationCla
             ]
         );
         #endregion
-        
-        
+
+
         #region BlackLists
         featureOperationClaims.AddRange(
             [
@@ -161,8 +161,8 @@ public class OperationClaimConfiguration : IEntityTypeConfiguration<OperationCla
             ]
         );
         #endregion
-        
-        
+
+
         #region Bootcamps
         featureOperationClaims.AddRange(
             [
@@ -175,8 +175,8 @@ public class OperationClaimConfiguration : IEntityTypeConfiguration<OperationCla
             ]
         );
         #endregion
-        
-        
+
+
         #region BootcampImages
         featureOperationClaims.AddRange(
             [
@@ -189,8 +189,8 @@ public class OperationClaimConfiguration : IEntityTypeConfiguration<OperationCla
             ]
         );
         #endregion
-        
-        
+
+
         #region BootcampStates
         featureOperationClaims.AddRange(
             [
@@ -203,8 +203,8 @@ public class OperationClaimConfiguration : IEntityTypeConfiguration<OperationCla
             ]
         );
         #endregion
-        
-        
+
+
         #region Employees
         featureOperationClaims.AddRange(
             [
@@ -217,8 +217,8 @@ public class OperationClaimConfiguration : IEntityTypeConfiguration<OperationCla
             ]
         );
         #endregion
-        
-        
+
+
         #region Instructors
         featureOperationClaims.AddRange(
             [
@@ -231,7 +231,7 @@ public class OperationClaimConfiguration : IEntityTypeConfiguration<OperationCla
             ]
         );
         #endregion
-        
+
         return featureOperationClaims;
     }
 #pragma warning restore S1854 // Unused assignments should be removed

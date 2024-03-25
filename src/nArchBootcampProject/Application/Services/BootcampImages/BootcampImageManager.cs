@@ -1,9 +1,9 @@
+using System.Linq.Expressions;
 using Application.Features.BootcampImages.Rules;
 using Application.Services.Repositories;
-using NArchitecture.Core.Persistence.Paging;
 using Domain.Entities;
 using Microsoft.EntityFrameworkCore.Query;
-using System.Linq.Expressions;
+using NArchitecture.Core.Persistence.Paging;
 
 namespace Application.Services.BootcampImages;
 
@@ -12,7 +12,10 @@ public class BootcampImageManager : IBootcampImageService
     private readonly IBootcampImageRepository _bootcampImageRepository;
     private readonly BootcampImageBusinessRules _bootcampImageBusinessRules;
 
-    public BootcampImageManager(IBootcampImageRepository bootcampImageRepository, BootcampImageBusinessRules bootcampImageBusinessRules)
+    public BootcampImageManager(
+        IBootcampImageRepository bootcampImageRepository,
+        BootcampImageBusinessRules bootcampImageBusinessRules
+    )
     {
         _bootcampImageRepository = bootcampImageRepository;
         _bootcampImageBusinessRules = bootcampImageBusinessRules;
@@ -26,7 +29,13 @@ public class BootcampImageManager : IBootcampImageService
         CancellationToken cancellationToken = default
     )
     {
-        BootcampImage? bootcampImage = await _bootcampImageRepository.GetAsync(predicate, include, withDeleted, enableTracking, cancellationToken);
+        BootcampImage? bootcampImage = await _bootcampImageRepository.GetAsync(
+            predicate,
+            include,
+            withDeleted,
+            enableTracking,
+            cancellationToken
+        );
         return bootcampImage;
     }
 

@@ -1,9 +1,9 @@
+using System.Linq.Expressions;
 using Application.Features.ApplicationStates.Rules;
 using Application.Services.Repositories;
-using NArchitecture.Core.Persistence.Paging;
 using Domain.Entities;
 using Microsoft.EntityFrameworkCore.Query;
-using System.Linq.Expressions;
+using NArchitecture.Core.Persistence.Paging;
 
 namespace Application.Services.ApplicationStates;
 
@@ -12,7 +12,10 @@ public class ApplicationStateManager : IApplicationStateService
     private readonly IApplicationStateRepository _applicationStateRepository;
     private readonly ApplicationStateBusinessRules _applicationStateBusinessRules;
 
-    public ApplicationStateManager(IApplicationStateRepository applicationStateRepository, ApplicationStateBusinessRules applicationStateBusinessRules)
+    public ApplicationStateManager(
+        IApplicationStateRepository applicationStateRepository,
+        ApplicationStateBusinessRules applicationStateBusinessRules
+    )
     {
         _applicationStateRepository = applicationStateRepository;
         _applicationStateBusinessRules = applicationStateBusinessRules;
@@ -26,7 +29,13 @@ public class ApplicationStateManager : IApplicationStateService
         CancellationToken cancellationToken = default
     )
     {
-        ApplicationState? applicationState = await _applicationStateRepository.GetAsync(predicate, include, withDeleted, enableTracking, cancellationToken);
+        ApplicationState? applicationState = await _applicationStateRepository.GetAsync(
+            predicate,
+            include,
+            withDeleted,
+            enableTracking,
+            cancellationToken
+        );
         return applicationState;
     }
 

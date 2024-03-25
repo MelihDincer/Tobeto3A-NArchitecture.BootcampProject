@@ -3,9 +3,9 @@ using Application.Features.BlackLists.Commands.Delete;
 using Application.Features.BlackLists.Commands.Update;
 using Application.Features.BlackLists.Queries.GetById;
 using Application.Features.BlackLists.Queries.GetList;
+using Microsoft.AspNetCore.Mvc;
 using NArchitecture.Core.Application.Requests;
 using NArchitecture.Core.Application.Responses;
-using Microsoft.AspNetCore.Mvc;
 
 namespace WebAPI.Controllers;
 

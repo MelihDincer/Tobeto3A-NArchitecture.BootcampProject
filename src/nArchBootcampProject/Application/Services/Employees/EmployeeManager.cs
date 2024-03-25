@@ -1,9 +1,9 @@
+using System.Linq.Expressions;
 using Application.Features.Employees.Rules;
 using Application.Services.Repositories;
-using NArchitecture.Core.Persistence.Paging;
 using Domain.Entities;
 using Microsoft.EntityFrameworkCore.Query;
-using System.Linq.Expressions;
+using NArchitecture.Core.Persistence.Paging;
 
 namespace Application.Services.Employees;
 
@@ -26,7 +26,13 @@ public class EmployeeManager : IEmployeeService
         CancellationToken cancellationToken = default
     )
     {
-        Employee? employee = await _employeeRepository.GetAsync(predicate, include, withDeleted, enableTracking, cancellationToken);
+        Employee? employee = await _employeeRepository.GetAsync(
+            predicate,
+            include,
+            withDeleted,
+            enableTracking,
+            cancellationToken
+        );
         return employee;
     }
 

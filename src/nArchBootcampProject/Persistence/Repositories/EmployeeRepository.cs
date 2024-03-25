@@ -7,7 +7,6 @@ namespace Persistence.Repositories;
 
 public class EmployeeRepository : EfRepositoryBase<Employee, Guid, BaseDbContext>, IEmployeeRepository
 {
-    public EmployeeRepository(BaseDbContext context) : base(context)
-    {
-    }
+    public EmployeeRepository(BaseDbContext context)
+        : base(context) { }
 }

@@ -4,8 +4,8 @@ using Application.Features.BootcampImages.Commands.Update;
 using Application.Features.BootcampImages.Queries.GetById;
 using Application.Features.BootcampImages.Queries.GetList;
 using AutoMapper;
-using NArchitecture.Core.Application.Responses;
 using Domain.Entities;
+using NArchitecture.Core.Application.Responses;
 using NArchitecture.Core.Persistence.Paging;
 
 namespace Application.Features.BootcampImages.Profiles;

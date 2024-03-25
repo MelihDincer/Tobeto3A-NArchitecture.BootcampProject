@@ -12,13 +12,15 @@ public class ApplicationState : Entity<short>
         ApplicationInformations = new HashSet<ApplicationInformation>();
     }
 
-    public ApplicationState(short id, string name) : this()
+    public ApplicationState(short id, string name)
+        : this()
     {
         Id = id;
         Name = name;
     }
 
-    public ApplicationState(string name) : this()
+    public ApplicationState(string name)
+        : this()
     {
         Name = name;
     }

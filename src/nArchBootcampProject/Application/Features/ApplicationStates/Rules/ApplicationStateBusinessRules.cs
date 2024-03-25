@@ -1,9 +1,9 @@
 using Application.Features.ApplicationStates.Constants;
 using Application.Services.Repositories;
+using Domain.Entities;
 using NArchitecture.Core.Application.Rules;
 using NArchitecture.Core.CrossCuttingConcerns.Exception.Types;
 using NArchitecture.Core.Localization.Abstraction;
-using Domain.Entities;
 
 namespace Application.Features.ApplicationStates.Rules;
 
@@ -12,7 +12,10 @@ public class ApplicationStateBusinessRules : BaseBusinessRules
     private readonly IApplicationStateRepository _applicationStateRepository;
     private readonly ILocalizationService _localizationService;
 
-    public ApplicationStateBusinessRules(IApplicationStateRepository applicationStateRepository, ILocalizationService localizationService)
+    public ApplicationStateBusinessRules(
+        IApplicationStateRepository applicationStateRepository,
+        ILocalizationService localizationService
+    )
     {
         _applicationStateRepository = applicationStateRepository;
         _localizationService = localizationService;

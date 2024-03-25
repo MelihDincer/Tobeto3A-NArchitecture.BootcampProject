@@ -11,8 +11,19 @@ public class Applicant : User
         Applications = new HashSet<ApplicationInformation>();
     }
 
-    public Applicant(Guid id, string userName, string firstName, string lastName, DateTime dateOfBirth, string nationalIdentity,
-        string email, string about, byte[] passwordHash, byte[] passwordSalt) : this()
+    public Applicant(
+        Guid id,
+        string userName,
+        string firstName,
+        string lastName,
+        DateTime dateOfBirth,
+        string nationalIdentity,
+        string email,
+        string about,
+        byte[] passwordHash,
+        byte[] passwordSalt
+    )
+        : this()
     {
         Id = id;
         UserName = userName;
@@ -26,8 +37,18 @@ public class Applicant : User
         PasswordSalt = passwordSalt;
     }
 
-    public Applicant(string userName, string firstName, string lastName, DateTime dateOfBirth, string nationalIdentity,
-        string email, string about, byte[] passwordHash, byte[] passwordSalt) : this()
+    public Applicant(
+        string userName,
+        string firstName,
+        string lastName,
+        DateTime dateOfBirth,
+        string nationalIdentity,
+        string email,
+        string about,
+        byte[] passwordHash,
+        byte[] passwordSalt
+    )
+        : this()
     {
         UserName = userName;
         FirstName = firstName;

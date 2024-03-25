@@ -1,9 +1,9 @@
+using System.Linq.Expressions;
 using Application.Features.BlackLists.Rules;
 using Application.Services.Repositories;
-using NArchitecture.Core.Persistence.Paging;
 using Domain.Entities;
 using Microsoft.EntityFrameworkCore.Query;
-using System.Linq.Expressions;
+using NArchitecture.Core.Persistence.Paging;
 
 namespace Application.Services.BlackLists;
 
@@ -26,7 +26,13 @@ public class BlackListManager : IBlackListService
         CancellationToken cancellationToken = default
     )
     {
-        BlackList? blackList = await _blackListRepository.GetAsync(predicate, include, withDeleted, enableTracking, cancellationToken);
+        BlackList? blackList = await _blackListRepository.GetAsync(
+            predicate,
+            include,
+            withDeleted,
+            enableTracking,
+            cancellationToken
+        );
         return blackList;
     }
 

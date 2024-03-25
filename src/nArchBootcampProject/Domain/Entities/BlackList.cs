@@ -9,12 +9,10 @@ public class BlackList : Entity<int>
     public DateTime Date { get; set; }
     public virtual Applicant? Applicant { get; set; }
 
-    public BlackList()
-    {
-        
-    }
+    public BlackList() { }
 
-    public BlackList(int id, Guid applicantId, string reason, DateTime dateTime) : this()
+    public BlackList(int id, Guid applicantId, string reason, DateTime dateTime)
+        : this()
     {
         Id = id;
         ApplicantId = applicantId;
@@ -22,7 +20,8 @@ public class BlackList : Entity<int>
         Date = dateTime;
     }
 
-    public BlackList(Guid applicantId, string reason, DateTime dateTime) : this()
+    public BlackList(Guid applicantId, string reason, DateTime dateTime)
+        : this()
     {
         ApplicantId = applicantId;
         Reason = reason;

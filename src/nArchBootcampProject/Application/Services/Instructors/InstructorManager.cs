@@ -1,9 +1,9 @@
+using System.Linq.Expressions;
 using Application.Features.Instructors.Rules;
 using Application.Services.Repositories;
-using NArchitecture.Core.Persistence.Paging;
 using Domain.Entities;
 using Microsoft.EntityFrameworkCore.Query;
-using System.Linq.Expressions;
+using NArchitecture.Core.Persistence.Paging;
 
 namespace Application.Services.Instructors;
 
@@ -26,7 +26,13 @@ public class InstructorManager : IInstructorService
         CancellationToken cancellationToken = default
     )
     {
-        Instructor? instructor = await _instructorRepository.GetAsync(predicate, include, withDeleted, enableTracking, cancellationToken);
+        Instructor? instructor = await _instructorRepository.GetAsync(
+            predicate,
+            include,
+            withDeleted,
+            enableTracking,
+            cancellationToken
+        );
         return instructor;
     }
 

@@ -4,16 +4,21 @@ using Application.Features.BlackLists.Rules;
 using Application.Services.Repositories;
 using AutoMapper;
 using Domain.Entities;
+using MediatR;
 using NArchitecture.Core.Application.Pipelines.Authorization;
 using NArchitecture.Core.Application.Pipelines.Caching;
 using NArchitecture.Core.Application.Pipelines.Logging;
 using NArchitecture.Core.Application.Pipelines.Transaction;
-using MediatR;
 using static Application.Features.BlackLists.Constants.BlackListsOperationClaims;
 
 namespace Application.Features.BlackLists.Commands.Delete;
 
-public class DeleteBlackListCommand : IRequest<DeletedBlackListResponse>, ISecuredRequest, ICacheRemoverRequest, ILoggableRequest, ITransactionalRequest
+public class DeleteBlackListCommand
+    : IRequest<DeletedBlackListResponse>,
+        ISecuredRequest,
+        ICacheRemoverRequest,
+        ILoggableRequest,
+        ITransactionalRequest
 {
     public int Id { get; set; }
 
@@ -29,8 +34,11 @@ public class DeleteBlackListCommand : IRequest<DeletedBlackListResponse>, ISecur
         private readonly IBlackListRepository _blackListRepository;
         private readonly BlackListBusinessRules _blackListBusinessRules;
 
-        public DeleteBlackListCommandHandler(IMapper mapper, IBlackListRepository blackListRepository,
-                                         BlackListBusinessRules blackListBusinessRules)
+        public DeleteBlackListCommandHandler(
+            IMapper mapper,
+            IBlackListRepository blackListRepository,
+            BlackListBusinessRules blackListBusinessRules
+        )
         {
             _mapper = mapper;
             _blackListRepository = blackListRepository;
@@ -39,7 +47,10 @@ public class DeleteBlackListCommand : IRequest<DeletedBlackListResponse>, ISecur
 
         public async Task<DeletedBlackListResponse> Handle(DeleteBlackListCommand request, CancellationToken cancellationToken)
         {
-            BlackList? blackList = await _blackListRepository.GetAsync(predicate: bl => bl.Id == request.Id, cancellationToken: cancellationToken);
+            BlackList? blackList = await _blackListRepository.GetAsync(
+                predicate: bl => bl.Id == request.Id,
+                cancellationToken: cancellationToken
+            );
             await _blackListBusinessRules.BlackListShouldExistWhenSelected(blackList);
 
             await _blackListRepository.DeleteAsync(blackList!);

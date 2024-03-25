@@ -11,12 +11,10 @@ public class ApplicationInformation : Entity<int>
     public virtual Bootcamp? Bootcamp { get; set; }
     public virtual ApplicationState? ApplicationState { get; set; }
 
-    public ApplicationInformation()
-    {
-        
-    }
+    public ApplicationInformation() { }
 
-    public ApplicationInformation(int id, int applicantId, int bootcampId, int applicationStatedId) : this()
+    public ApplicationInformation(int id, int applicantId, int bootcampId, int applicationStatedId)
+        : this()
     {
         Id = id;
         ApplicantId = applicantId;
@@ -24,7 +22,8 @@ public class ApplicationInformation : Entity<int>
         ApplicationStateId = applicationStatedId;
     }
 
-    public ApplicationInformation(int applicantId, int bootcampId, int applicationStatedId) : this()
+    public ApplicationInformation(int applicantId, int bootcampId, int applicationStatedId)
+        : this()
     {
         ApplicantId = applicantId;
         BootcampId = bootcampId;

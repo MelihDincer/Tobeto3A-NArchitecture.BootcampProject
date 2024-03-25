@@ -3,9 +3,9 @@ using Application.Features.BootcampStates.Commands.Delete;
 using Application.Features.BootcampStates.Commands.Update;
 using Application.Features.BootcampStates.Queries.GetById;
 using Application.Features.BootcampStates.Queries.GetList;
+using Microsoft.AspNetCore.Mvc;
 using NArchitecture.Core.Application.Requests;
 using NArchitecture.Core.Application.Responses;
-using Microsoft.AspNetCore.Mvc;
 
 namespace WebAPI.Controllers;
 

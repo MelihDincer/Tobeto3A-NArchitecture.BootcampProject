@@ -3,16 +3,21 @@ using Application.Features.Instructors.Rules;
 using Application.Services.Repositories;
 using AutoMapper;
 using Domain.Entities;
+using MediatR;
 using NArchitecture.Core.Application.Pipelines.Authorization;
 using NArchitecture.Core.Application.Pipelines.Caching;
 using NArchitecture.Core.Application.Pipelines.Logging;
 using NArchitecture.Core.Application.Pipelines.Transaction;
-using MediatR;
 using static Application.Features.Instructors.Constants.InstructorsOperationClaims;
 
 namespace Application.Features.Instructors.Commands.Create;
 
-public class CreateInstructorCommand : IRequest<CreatedInstructorResponse>, ISecuredRequest, ICacheRemoverRequest, ILoggableRequest, ITransactionalRequest
+public class CreateInstructorCommand
+    : IRequest<CreatedInstructorResponse>,
+        ISecuredRequest,
+        ICacheRemoverRequest,
+        ILoggableRequest,
+        ITransactionalRequest
 {
     public string CompanyName { get; set; }
 
@@ -28,8 +33,11 @@ public class CreateInstructorCommand : IRequest<CreatedInstructorResponse>, ISec
         private readonly IInstructorRepository _instructorRepository;
         private readonly InstructorBusinessRules _instructorBusinessRules;
 
-        public CreateInstructorCommandHandler(IMapper mapper, IInstructorRepository instructorRepository,
-                                         InstructorBusinessRules instructorBusinessRules)
+        public CreateInstructorCommandHandler(
+            IMapper mapper,
+            IInstructorRepository instructorRepository,
+            InstructorBusinessRules instructorBusinessRules
+        )
         {
             _mapper = mapper;
             _instructorRepository = instructorRepository;

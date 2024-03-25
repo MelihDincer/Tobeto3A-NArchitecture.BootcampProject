@@ -1,9 +1,9 @@
+using System.Linq.Expressions;
 using Application.Features.Bootcamps.Rules;
 using Application.Services.Repositories;
-using NArchitecture.Core.Persistence.Paging;
 using Domain.Entities;
 using Microsoft.EntityFrameworkCore.Query;
-using System.Linq.Expressions;
+using NArchitecture.Core.Persistence.Paging;
 
 namespace Application.Services.Bootcamps;
 
@@ -26,7 +26,13 @@ public class BootcampManager : IBootcampService
         CancellationToken cancellationToken = default
     )
     {
-        Bootcamp? bootcamp = await _bootcampRepository.GetAsync(predicate, include, withDeleted, enableTracking, cancellationToken);
+        Bootcamp? bootcamp = await _bootcampRepository.GetAsync(
+            predicate,
+            include,
+            withDeleted,
+            enableTracking,
+            cancellationToken
+        );
         return bootcamp;
     }
 

@@ -5,9 +5,10 @@ using Persistence.Contexts;
 
 namespace Persistence.Repositories;
 
-public class ApplicationInformationRepository : EfRepositoryBase<ApplicationInformation, int, BaseDbContext>, IApplicationInformationRepository
+public class ApplicationInformationRepository
+    : EfRepositoryBase<ApplicationInformation, int, BaseDbContext>,
+        IApplicationInformationRepository
 {
-    public ApplicationInformationRepository(BaseDbContext context) : base(context)
-    {
-    }
+    public ApplicationInformationRepository(BaseDbContext context)
+        : base(context) { }
 }

@@ -3,8 +3,8 @@ using Application.Features.Applicants.Rules;
 using Application.Services.Repositories;
 using AutoMapper;
 using Domain.Entities;
-using NArchitecture.Core.Application.Pipelines.Authorization;
 using MediatR;
+using NArchitecture.Core.Application.Pipelines.Authorization;
 using static Application.Features.Applicants.Constants.ApplicantsOperationClaims;
 
 namespace Application.Features.Applicants.Queries.GetById;
@@ -21,7 +21,11 @@ public class GetByIdApplicantQuery : IRequest<GetByIdApplicantResponse>, ISecure
         private readonly IApplicantRepository _applicantRepository;
         private readonly ApplicantBusinessRules _applicantBusinessRules;
 
-        public GetByIdApplicantQueryHandler(IMapper mapper, IApplicantRepository applicantRepository, ApplicantBusinessRules applicantBusinessRules)
+        public GetByIdApplicantQueryHandler(
+            IMapper mapper,
+            IApplicantRepository applicantRepository,
+            ApplicantBusinessRules applicantBusinessRules
+        )
         {
             _mapper = mapper;
             _applicantRepository = applicantRepository;
@@ -30,7 +34,10 @@ public class GetByIdApplicantQuery : IRequest<GetByIdApplicantResponse>, ISecure
 
         public async Task<GetByIdApplicantResponse> Handle(GetByIdApplicantQuery request, CancellationToken cancellationToken)
         {
-            Applicant? applicant = await _applicantRepository.GetAsync(predicate: a => a.Id == request.Id, cancellationToken: cancellationToken);
+            Applicant? applicant = await _applicantRepository.GetAsync(
+                predicate: a => a.Id == request.Id,
+                cancellationToken: cancellationToken
+            );
             await _applicantBusinessRules.ApplicantShouldExistWhenSelected(applicant);
 
             GetByIdApplicantResponse response = _mapper.Map<GetByIdApplicantResponse>(applicant);

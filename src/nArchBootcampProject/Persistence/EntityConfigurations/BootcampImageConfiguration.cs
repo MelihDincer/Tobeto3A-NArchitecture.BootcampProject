@@ -17,8 +17,7 @@ public class BootcampImageConfiguration : IEntityTypeConfiguration<BootcampImage
         builder.Property(bi => bi.UpdatedDate).HasColumnName("UpdatedDate");
         builder.Property(bi => bi.DeletedDate).HasColumnName("DeletedDate");
 
-        builder.HasOne(b => b.Bootcamp
-        );
+        builder.HasOne(b => b.Bootcamp);
         builder.HasQueryFilter(bi => !bi.DeletedDate.HasValue);
     }
 }

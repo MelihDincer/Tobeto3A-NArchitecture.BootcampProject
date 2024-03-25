@@ -20,7 +20,8 @@ public class Bootcamp : Entity<int>
         BootcampImages = new HashSet<BootcampImage>();
     }
 
-    public Bootcamp(int id, Guid instructorId, short bootcampStateId, string name, DateTime startDate, DateTime endDate) : this()
+    public Bootcamp(int id, Guid instructorId, short bootcampStateId, string name, DateTime startDate, DateTime endDate)
+        : this()
     {
         Id = id;
         InstructorId = instructorId;
@@ -30,7 +31,8 @@ public class Bootcamp : Entity<int>
         EndDate = endDate;
     }
 
-    public Bootcamp(Guid instructorId, short bootcampStateId, string name, DateTime startDate, DateTime endDate) : this()
+    public Bootcamp(Guid instructorId, short bootcampStateId, string name, DateTime startDate, DateTime endDate)
+        : this()
     {
         InstructorId = instructorId;
         BootcampStateId = bootcampStateId;

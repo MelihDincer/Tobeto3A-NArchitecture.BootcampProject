@@ -1,5 +1,4 @@
-﻿
-using NArchitecture.Core.Persistence.Repositories;
+﻿using NArchitecture.Core.Persistence.Repositories;
 
 namespace Domain.Entities;
 
@@ -10,19 +9,18 @@ public class BootcampImage : Entity<int>
 
     public virtual Bootcamp? Bootcamp { get; set; }
 
-    public BootcampImage()
-    {
+    public BootcampImage() { }
 
-    }
-
-    public BootcampImage(int id, int bootcampId, string imagePath) : this()
+    public BootcampImage(int id, int bootcampId, string imagePath)
+        : this()
     {
         Id = id;
         BootcampId = bootcampId;
         ImagePath = imagePath;
     }
 
-    public BootcampImage(int bootcampId, string imagePath) : this()
+    public BootcampImage(int bootcampId, string imagePath)
+        : this()
     {
         BootcampId = bootcampId;
         ImagePath = imagePath;

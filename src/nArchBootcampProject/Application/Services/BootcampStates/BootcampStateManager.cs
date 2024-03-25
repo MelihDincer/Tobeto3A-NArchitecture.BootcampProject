@@ -1,9 +1,9 @@
+using System.Linq.Expressions;
 using Application.Features.BootcampStates.Rules;
 using Application.Services.Repositories;
-using NArchitecture.Core.Persistence.Paging;
 using Domain.Entities;
 using Microsoft.EntityFrameworkCore.Query;
-using System.Linq.Expressions;
+using NArchitecture.Core.Persistence.Paging;
 
 namespace Application.Services.BootcampStates;
 
@@ -12,7 +12,10 @@ public class BootcampStateManager : IBootcampStateService
     private readonly IBootcampStateRepository _bootcampStateRepository;
     private readonly BootcampStateBusinessRules _bootcampStateBusinessRules;
 
-    public BootcampStateManager(IBootcampStateRepository bootcampStateRepository, BootcampStateBusinessRules bootcampStateBusinessRules)
+    public BootcampStateManager(
+        IBootcampStateRepository bootcampStateRepository,
+        BootcampStateBusinessRules bootcampStateBusinessRules
+    )
     {
         _bootcampStateRepository = bootcampStateRepository;
         _bootcampStateBusinessRules = bootcampStateBusinessRules;
@@ -26,7 +29,13 @@ public class BootcampStateManager : IBootcampStateService
         CancellationToken cancellationToken = default
     )
     {
-        BootcampState? bootcampState = await _bootcampStateRepository.GetAsync(predicate, include, withDeleted, enableTracking, cancellationToken);
+        BootcampState? bootcampState = await _bootcampStateRepository.GetAsync(
+            predicate,
+            include,
+            withDeleted,
+            enableTracking,
+            cancellationToken
+        );
         return bootcampState;
     }
 

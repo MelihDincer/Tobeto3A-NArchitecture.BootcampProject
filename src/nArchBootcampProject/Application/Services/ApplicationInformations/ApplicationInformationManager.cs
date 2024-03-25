@@ -1,9 +1,9 @@
+using System.Linq.Expressions;
 using Application.Features.ApplicationInformations.Rules;
 using Application.Services.Repositories;
-using NArchitecture.Core.Persistence.Paging;
 using Domain.Entities;
 using Microsoft.EntityFrameworkCore.Query;
-using System.Linq.Expressions;
+using NArchitecture.Core.Persistence.Paging;
 
 namespace Application.Services.ApplicationInformations;
 
@@ -12,7 +12,10 @@ public class ApplicationInformationManager : IApplicationInformationService
     private readonly IApplicationInformationRepository _applicationInformationRepository;
     private readonly ApplicationInformationBusinessRules _applicationInformationBusinessRules;
 
-    public ApplicationInformationManager(IApplicationInformationRepository applicationInformationRepository, ApplicationInformationBusinessRules applicationInformationBusinessRules)
+    public ApplicationInformationManager(
+        IApplicationInformationRepository applicationInformationRepository,
+        ApplicationInformationBusinessRules applicationInformationBusinessRules
+    )
     {
         _applicationInformationRepository = applicationInformationRepository;
         _applicationInformationBusinessRules = applicationInformationBusinessRules;
@@ -26,7 +29,13 @@ public class ApplicationInformationManager : IApplicationInformationService
         CancellationToken cancellationToken = default
     )
     {
-        ApplicationInformation? applicationInformation = await _applicationInformationRepository.GetAsync(predicate, include, withDeleted, enableTracking, cancellationToken);
+        ApplicationInformation? applicationInformation = await _applicationInformationRepository.GetAsync(
+            predicate,
+            include,
+            withDeleted,
+            enableTracking,
+            cancellationToken
+        );
         return applicationInformation;
     }
 
@@ -56,21 +65,27 @@ public class ApplicationInformationManager : IApplicationInformationService
 
     public async Task<ApplicationInformation> AddAsync(ApplicationInformation applicationInformation)
     {
-        ApplicationInformation addedApplicationInformation = await _applicationInformationRepository.AddAsync(applicationInformation);
+        ApplicationInformation addedApplicationInformation = await _applicationInformationRepository.AddAsync(
+            applicationInformation
+        );
 
         return addedApplicationInformation;
     }
 
     public async Task<ApplicationInformation> UpdateAsync(ApplicationInformation applicationInformation)
     {
-        ApplicationInformation updatedApplicationInformation = await _applicationInformationRepository.UpdateAsync(applicationInformation);
+        ApplicationInformation updatedApplicationInformation = await _applicationInformationRepository.UpdateAsync(
+            applicationInformation
+        );
 
         return updatedApplicationInformation;
     }
 
     public async Task<ApplicationInformation> DeleteAsync(ApplicationInformation applicationInformation, bool permanent = false)
     {
-        ApplicationInformation deletedApplicationInformation = await _applicationInformationRepository.DeleteAsync(applicationInformation);
+        ApplicationInformation deletedApplicationInformation = await _applicationInformationRepository.DeleteAsync(
+            applicationInformation
+        );
 
         return deletedApplicationInformation;
     }

@@ -10,8 +10,19 @@ public class Instructor : User
         Bootcamps = new HashSet<Bootcamp>();
     }
 
-    public Instructor(Guid id, string userName, string firstName, string lastName, DateTime dateOfBirth, string nationalIdentity,
-        string email, string companyName, byte[] passwordHash, byte[] passwordSalt) : this()
+    public Instructor(
+        Guid id,
+        string userName,
+        string firstName,
+        string lastName,
+        DateTime dateOfBirth,
+        string nationalIdentity,
+        string email,
+        string companyName,
+        byte[] passwordHash,
+        byte[] passwordSalt
+    )
+        : this()
     {
         Id = id;
         UserName = userName;
@@ -25,8 +36,18 @@ public class Instructor : User
         PasswordSalt = passwordSalt;
     }
 
-    public Instructor(string userName, string firstName, string lastName, DateTime dateOfBirth, string nationalIdentity,
-        string email, string companyName, byte[] passwordHash, byte[] passwordSalt) : this()
+    public Instructor(
+        string userName,
+        string firstName,
+        string lastName,
+        DateTime dateOfBirth,
+        string nationalIdentity,
+        string email,
+        string companyName,
+        byte[] passwordHash,
+        byte[] passwordSalt
+    )
+        : this()
     {
         UserName = userName;
         FirstName = firstName;
