@@ -17,6 +17,7 @@ public class ApplicantConfiguration : IEntityTypeConfiguration<Applicant>
         builder.Property(a => a.DeletedDate).HasColumnName("DeletedDate");
 
         builder.HasMany(a => a.Applications);
+        builder.HasOne(x => x.BlackList);
         //builder.HasQueryFilter(a => !a.DeletedDate.HasValue);
     }
 }
