@@ -1,3 +1,5 @@
-﻿namespace Domain.Entities;
+﻿using NArchitecture.Core.Security.Entities;
 
-public class OperationClaim : NArchitecture.Core.Security.Entities.OperationClaim<int> { }
+namespace Domain.Entities;
+
+public class OperationClaim : OperationClaim<int> { }

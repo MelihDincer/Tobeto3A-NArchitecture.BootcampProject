@@ -1,6 +1,8 @@
-﻿namespace Domain.Entities;
+﻿using NArchitecture.Core.Security.Entities;
 
-public class RefreshToken : NArchitecture.Core.Security.Entities.RefreshToken<Guid>
+namespace Domain.Entities;
+
+public class RefreshToken : RefreshToken<Guid>
 {
     public virtual User User { get; set; } = default!;
 }

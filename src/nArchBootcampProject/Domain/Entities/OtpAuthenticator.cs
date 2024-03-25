@@ -1,6 +1,8 @@
-﻿namespace Domain.Entities;
+﻿using NArchitecture.Core.Security.Entities;
 
-public class OtpAuthenticator : NArchitecture.Core.Security.Entities.OtpAuthenticator<Guid>
+namespace Domain.Entities;
+
+public class OtpAuthenticator : OtpAuthenticator<Guid>
 {
     public virtual User User { get; set; } = default!;
 }

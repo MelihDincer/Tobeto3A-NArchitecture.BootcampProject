@@ -1,6 +1,8 @@
-﻿namespace Domain.Entities;
+﻿using NArchitecture.Core.Security.Entities;
 
-public class EmailAuthenticator : NArchitecture.Core.Security.Entities.EmailAuthenticator<Guid>
+namespace Domain.Entities;
+
+public class EmailAuthenticator : EmailAuthenticator<Guid>
 {
     public virtual User User { get; set; } = default!;
 }
