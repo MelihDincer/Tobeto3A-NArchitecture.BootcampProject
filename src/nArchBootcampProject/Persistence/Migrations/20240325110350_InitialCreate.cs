@@ -17,7 +17,8 @@ namespace Persistence.Migrations
                 name: "ApplicationStates",
                 columns: table => new
                 {
-                    Id = table.Column<short>(type: "smallint", nullable: false).Annotation("SqlServer:Identity", "1, 1"),
+                    Id = table.Column<short>(type: "smallint", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
                     Name = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     CreatedDate = table.Column<DateTime>(type: "datetime2", nullable: false),
                     UpdatedDate = table.Column<DateTime>(type: "datetime2", nullable: true),
@@ -26,14 +27,14 @@ namespace Persistence.Migrations
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_ApplicationStates", x => x.Id);
-                }
-            );
+                });
 
             migrationBuilder.CreateTable(
                 name: "BootcampStates",
                 columns: table => new
                 {
-                    Id = table.Column<short>(type: "smallint", nullable: false).Annotation("SqlServer:Identity", "1, 1"),
+                    Id = table.Column<short>(type: "smallint", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
                     Name = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     CreatedDate = table.Column<DateTime>(type: "datetime2", nullable: false),
                     UpdatedDate = table.Column<DateTime>(type: "datetime2", nullable: true),
@@ -42,14 +43,14 @@ namespace Persistence.Migrations
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_BootcampStates", x => x.Id);
-                }
-            );
+                });
 
             migrationBuilder.CreateTable(
                 name: "OperationClaims",
                 columns: table => new
                 {
-                    Id = table.Column<int>(type: "int", nullable: false).Annotation("SqlServer:Identity", "1, 1"),
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
                     CreatedDate = table.Column<DateTime>(type: "datetime2", nullable: false),
                     UpdatedDate = table.Column<DateTime>(type: "datetime2", nullable: true),
                     DeletedDate = table.Column<DateTime>(type: "datetime2", nullable: true),
@@ -58,8 +59,7 @@ namespace Persistence.Migrations
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_OperationClaims", x => x.Id);
-                }
-            );
+                });
 
             migrationBuilder.CreateTable(
                 name: "Users",
@@ -82,8 +82,7 @@ namespace Persistence.Migrations
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Users", x => x.Id);
-                }
-            );
+                });
 
             migrationBuilder.CreateTable(
                 name: "Applicants",
@@ -100,10 +99,8 @@ namespace Persistence.Migrations
                         column: x => x.Id,
                         principalTable: "Users",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade
-                    );
-                }
-            );
+                        onDelete: ReferentialAction.Cascade);
+                });
 
             migrationBuilder.CreateTable(
                 name: "EmailAuthenticators",
@@ -125,10 +122,8 @@ namespace Persistence.Migrations
                         column: x => x.UserId,
                         principalTable: "Users",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict
-                    );
-                }
-            );
+                        onDelete: ReferentialAction.Restrict);
+                });
 
             migrationBuilder.CreateTable(
                 name: "Employees",
@@ -145,10 +140,8 @@ namespace Persistence.Migrations
                         column: x => x.Id,
                         principalTable: "Users",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade
-                    );
-                }
-            );
+                        onDelete: ReferentialAction.Cascade);
+                });
 
             migrationBuilder.CreateTable(
                 name: "Instructors",
@@ -165,10 +158,8 @@ namespace Persistence.Migrations
                         column: x => x.Id,
                         principalTable: "Users",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade
-                    );
-                }
-            );
+                        onDelete: ReferentialAction.Cascade);
+                });
 
             migrationBuilder.CreateTable(
                 name: "OtpAuthenticators",
@@ -190,10 +181,8 @@ namespace Persistence.Migrations
                         column: x => x.UserId,
                         principalTable: "Users",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict
-                    );
-                }
-            );
+                        onDelete: ReferentialAction.Restrict);
+                });
 
             migrationBuilder.CreateTable(
                 name: "RefreshTokens",
@@ -220,10 +209,8 @@ namespace Persistence.Migrations
                         column: x => x.UserId,
                         principalTable: "Users",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict
-                    );
-                }
-            );
+                        onDelete: ReferentialAction.Restrict);
+                });
 
             migrationBuilder.CreateTable(
                 name: "UserOperationClaims",
@@ -244,23 +231,21 @@ namespace Persistence.Migrations
                         column: x => x.OperationClaimId,
                         principalTable: "OperationClaims",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict
-                    );
+                        onDelete: ReferentialAction.Restrict);
                     table.ForeignKey(
                         name: "FK_UserOperationClaims_Users_UserId",
                         column: x => x.UserId,
                         principalTable: "Users",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict
-                    );
-                }
-            );
+                        onDelete: ReferentialAction.Restrict);
+                });
 
             migrationBuilder.CreateTable(
                 name: "BlackLists",
                 columns: table => new
                 {
-                    Id = table.Column<int>(type: "int", nullable: false).Annotation("SqlServer:Identity", "1, 1"),
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
                     ApplicantId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     Reason = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Date = table.Column<DateTime>(type: "datetime2", nullable: false),
@@ -276,16 +261,15 @@ namespace Persistence.Migrations
                         column: x => x.ApplicantId,
                         principalTable: "Applicants",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict
-                    );
-                }
-            );
+                        onDelete: ReferentialAction.Restrict);
+                });
 
             migrationBuilder.CreateTable(
                 name: "Bootcamps",
                 columns: table => new
                 {
-                    Id = table.Column<int>(type: "int", nullable: false).Annotation("SqlServer:Identity", "1, 1"),
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
                     Name = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     InstructorId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     BootcampStateId = table.Column<short>(type: "smallint", nullable: false),
@@ -303,28 +287,24 @@ namespace Persistence.Migrations
                         column: x => x.BootcampStateId,
                         principalTable: "BootcampStates",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict
-                    );
+                        onDelete: ReferentialAction.Restrict);
                     table.ForeignKey(
                         name: "FK_Bootcamps_Instructors_InstructorId",
                         column: x => x.InstructorId,
                         principalTable: "Instructors",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict
-                    );
-                }
-            );
+                        onDelete: ReferentialAction.Restrict);
+                });
 
             migrationBuilder.CreateTable(
                 name: "ApplicationInformations",
                 columns: table => new
                 {
-                    Id = table.Column<int>(type: "int", nullable: false).Annotation("SqlServer:Identity", "1, 1"),
-                    ApplicantId = table.Column<int>(type: "int", nullable: false),
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    ApplicantId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     BootcampId = table.Column<int>(type: "int", nullable: false),
-                    ApplicationStateId = table.Column<int>(type: "int", nullable: false),
-                    ApplicantId1 = table.Column<Guid>(type: "uniqueidentifier", nullable: true),
-                    ApplicationStateId1 = table.Column<short>(type: "smallint", nullable: true),
+                    ApplicationStateId = table.Column<short>(type: "smallint", nullable: false),
                     CreatedDate = table.Column<DateTime>(type: "datetime2", nullable: false),
                     UpdatedDate = table.Column<DateTime>(type: "datetime2", nullable: true),
                     DeletedDate = table.Column<DateTime>(type: "datetime2", nullable: true)
@@ -333,34 +313,31 @@ namespace Persistence.Migrations
                 {
                     table.PrimaryKey("PK_ApplicationInformations", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_ApplicationInformations_Applicants_ApplicantId1",
-                        column: x => x.ApplicantId1,
+                        name: "FK_ApplicationInformations_Applicants_ApplicantId",
+                        column: x => x.ApplicantId,
                         principalTable: "Applicants",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict
-                    );
+                        onDelete: ReferentialAction.Restrict);
                     table.ForeignKey(
-                        name: "FK_ApplicationInformations_ApplicationStates_ApplicationStateId1",
-                        column: x => x.ApplicationStateId1,
+                        name: "FK_ApplicationInformations_ApplicationStates_ApplicationStateId",
+                        column: x => x.ApplicationStateId,
                         principalTable: "ApplicationStates",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict
-                    );
+                        onDelete: ReferentialAction.Restrict);
                     table.ForeignKey(
                         name: "FK_ApplicationInformations_Bootcamps_BootcampId",
                         column: x => x.BootcampId,
                         principalTable: "Bootcamps",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict
-                    );
-                }
-            );
+                        onDelete: ReferentialAction.Restrict);
+                });
 
             migrationBuilder.CreateTable(
                 name: "BootcampImages",
                 columns: table => new
                 {
-                    Id = table.Column<int>(type: "int", nullable: false).Annotation("SqlServer:Identity", "1, 1"),
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
                     BootcampId = table.Column<int>(type: "int", nullable: false),
                     ImagePath = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     CreatedDate = table.Column<DateTime>(type: "datetime2", nullable: false),
@@ -375,10 +352,8 @@ namespace Persistence.Migrations
                         column: x => x.BootcampId,
                         principalTable: "Bootcamps",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict
-                    );
-                }
-            );
+                        onDelete: ReferentialAction.Restrict);
+                });
 
             migrationBuilder.InsertData(
                 table: "OperationClaims",
@@ -414,48 +389,12 @@ namespace Persistence.Migrations
                     { 27, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), null, "Applicants.Create", null },
                     { 28, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), null, "Applicants.Update", null },
                     { 29, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), null, "Applicants.Delete", null },
-                    {
-                        30,
-                        new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                        null,
-                        "ApplicationInformations.Admin",
-                        null
-                    },
-                    {
-                        31,
-                        new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                        null,
-                        "ApplicationInformations.Read",
-                        null
-                    },
-                    {
-                        32,
-                        new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                        null,
-                        "ApplicationInformations.Write",
-                        null
-                    },
-                    {
-                        33,
-                        new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                        null,
-                        "ApplicationInformations.Create",
-                        null
-                    },
-                    {
-                        34,
-                        new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                        null,
-                        "ApplicationInformations.Update",
-                        null
-                    },
-                    {
-                        35,
-                        new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                        null,
-                        "ApplicationInformations.Delete",
-                        null
-                    },
+                    { 30, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), null, "ApplicationInformations.Admin", null },
+                    { 31, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), null, "ApplicationInformations.Read", null },
+                    { 32, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), null, "ApplicationInformations.Write", null },
+                    { 33, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), null, "ApplicationInformations.Create", null },
+                    { 34, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), null, "ApplicationInformations.Update", null },
+                    { 35, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), null, "ApplicationInformations.Delete", null },
                     { 36, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), null, "ApplicationStates.Admin", null },
                     { 37, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), null, "ApplicationStates.Read", null },
                     { 38, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), null, "ApplicationStates.Write", null },
@@ -498,333 +437,127 @@ namespace Persistence.Migrations
                     { 75, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), null, "Instructors.Create", null },
                     { 76, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), null, "Instructors.Update", null },
                     { 77, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), null, "Instructors.Delete", null }
-                }
-            );
+                });
 
             migrationBuilder.InsertData(
                 table: "Users",
-                columns: new[]
-                {
-                    "Id",
-                    "AuthenticatorType",
-                    "CreatedDate",
-                    "DateOfBirth",
-                    "DeletedDate",
-                    "Email",
-                    "FirstName",
-                    "LastName",
-                    "NationalIdentity",
-                    "PasswordHash",
-                    "PasswordSalt",
-                    "UpdatedDate",
-                    "UserName"
-                },
-                values: new object[]
-                {
-                    new Guid("a4e710ab-ca17-49b3-ba34-298f6e4fe57c"),
-                    0,
-                    new DateTime(2024, 3, 25, 3, 21, 30, 902, DateTimeKind.Local).AddTicks(3535),
-                    new DateTime(2024, 3, 25, 3, 21, 30, 902, DateTimeKind.Local).AddTicks(3519),
-                    null,
-                    "narch@kodlama.io",
-                    "Melih",
-                    "Dinçer",
-                    "1234567",
-                    new byte[]
-                    {
-                        21,
-                        171,
-                        236,
-                        154,
-                        191,
-                        186,
-                        1,
-                        215,
-                        96,
-                        157,
-                        115,
-                        67,
-                        160,
-                        134,
-                        146,
-                        229,
-                        148,
-                        140,
-                        222,
-                        21,
-                        223,
-                        67,
-                        171,
-                        144,
-                        159,
-                        189,
-                        176,
-                        34,
-                        107,
-                        42,
-                        81,
-                        77,
-                        88,
-                        116,
-                        43,
-                        134,
-                        31,
-                        32,
-                        200,
-                        112,
-                        15,
-                        117,
-                        187,
-                        22,
-                        55,
-                        151,
-                        214,
-                        199,
-                        73,
-                        207,
-                        98,
-                        173,
-                        101,
-                        146,
-                        210,
-                        167,
-                        243,
-                        203,
-                        125,
-                        31,
-                        158,
-                        57,
-                        63,
-                        83
-                    },
-                    new byte[]
-                    {
-                        185,
-                        198,
-                        207,
-                        156,
-                        120,
-                        227,
-                        28,
-                        144,
-                        182,
-                        101,
-                        74,
-                        253,
-                        111,
-                        54,
-                        255,
-                        191,
-                        61,
-                        100,
-                        138,
-                        69,
-                        156,
-                        156,
-                        99,
-                        192,
-                        46,
-                        166,
-                        164,
-                        36,
-                        98,
-                        204,
-                        108,
-                        108,
-                        114,
-                        30,
-                        82,
-                        191,
-                        39,
-                        100,
-                        129,
-                        110,
-                        146,
-                        223,
-                        196,
-                        138,
-                        238,
-                        194,
-                        63,
-                        206,
-                        60,
-                        7,
-                        183,
-                        72,
-                        133,
-                        101,
-                        241,
-                        69,
-                        240,
-                        97,
-                        199,
-                        163,
-                        44,
-                        244,
-                        21,
-                        33,
-                        59,
-                        170,
-                        225,
-                        70,
-                        168,
-                        19,
-                        17,
-                        143,
-                        94,
-                        112,
-                        211,
-                        154,
-                        78,
-                        150,
-                        168,
-                        10,
-                        213,
-                        108,
-                        50,
-                        37,
-                        48,
-                        157,
-                        222,
-                        209,
-                        171,
-                        85,
-                        238,
-                        102,
-                        64,
-                        45,
-                        134,
-                        106,
-                        179,
-                        123,
-                        145,
-                        19,
-                        186,
-                        39,
-                        171,
-                        173,
-                        9,
-                        67,
-                        179,
-                        141,
-                        66,
-                        251,
-                        17,
-                        177,
-                        252,
-                        95,
-                        214,
-                        225,
-                        79,
-                        102,
-                        97,
-                        225,
-                        188,
-                        52,
-                        58,
-                        19,
-                        223,
-                        208,
-                        52,
-                        243
-                    },
-                    null,
-                    "admin"
-                }
-            );
+                columns: new[] { "Id", "AuthenticatorType", "CreatedDate", "DateOfBirth", "DeletedDate", "Email", "FirstName", "LastName", "NationalIdentity", "PasswordHash", "PasswordSalt", "UpdatedDate", "UserName" },
+                values: new object[] { new Guid("ef5e90df-12fe-41a6-b364-c96f774874ee"), 0, new DateTime(2024, 3, 25, 14, 3, 49, 696, DateTimeKind.Local).AddTicks(7564), new DateTime(2024, 3, 25, 14, 3, 49, 696, DateTimeKind.Local).AddTicks(7553), null, "narch@kodlama.io", "Melih", "Dinçer", "1234567", new byte[] { 228, 242, 226, 42, 194, 186, 176, 145, 66, 101, 40, 230, 162, 102, 54, 191, 237, 29, 78, 33, 74, 108, 13, 20, 194, 155, 95, 92, 21, 198, 25, 157, 3, 152, 77, 39, 37, 233, 153, 222, 53, 174, 117, 81, 70, 248, 18, 253, 168, 160, 104, 180, 112, 143, 80, 128, 10, 198, 255, 47, 32, 236, 9, 225 }, new byte[] { 40, 168, 0, 48, 149, 150, 60, 35, 13, 205, 39, 215, 96, 144, 121, 14, 236, 177, 108, 249, 229, 168, 49, 196, 65, 179, 96, 119, 42, 9, 112, 127, 147, 195, 152, 33, 117, 138, 110, 201, 9, 121, 104, 157, 176, 213, 99, 55, 79, 126, 29, 109, 156, 237, 207, 183, 214, 103, 132, 225, 48, 242, 77, 0, 73, 23, 247, 157, 180, 44, 30, 39, 97, 224, 0, 135, 240, 4, 161, 12, 96, 118, 204, 239, 15, 10, 110, 112, 221, 219, 230, 131, 53, 246, 22, 9, 222, 141, 44, 77, 1, 94, 87, 38, 84, 244, 125, 155, 189, 224, 24, 145, 114, 54, 172, 0, 167, 155, 236, 52, 73, 113, 221, 183, 24, 245, 207, 235 }, null, "admin" });
 
             migrationBuilder.InsertData(
                 table: "UserOperationClaims",
                 columns: new[] { "Id", "CreatedDate", "DeletedDate", "OperationClaimId", "UpdatedDate", "UserId" },
-                values: new object[]
-                {
-                    new Guid("9a623d49-0139-48a9-8e54-6a5311ed5e8b"),
-                    new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                    null,
-                    1,
-                    null,
-                    new Guid("a4e710ab-ca17-49b3-ba34-298f6e4fe57c")
-                }
-            );
+                values: new object[] { new Guid("394f6e7c-4d57-4c41-82b7-92e0e38c1609"), new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), null, 1, null, new Guid("ef5e90df-12fe-41a6-b364-c96f774874ee") });
 
             migrationBuilder.CreateIndex(
-                name: "IX_ApplicationInformations_ApplicantId1",
+                name: "IX_ApplicationInformations_ApplicantId",
                 table: "ApplicationInformations",
-                column: "ApplicantId1"
-            );
+                column: "ApplicantId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_ApplicationInformations_ApplicationStateId1",
+                name: "IX_ApplicationInformations_ApplicationStateId",
                 table: "ApplicationInformations",
-                column: "ApplicationStateId1"
-            );
+                column: "ApplicationStateId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_ApplicationInformations_BootcampId",
                 table: "ApplicationInformations",
-                column: "BootcampId"
-            );
+                column: "BootcampId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_BlackLists_ApplicantId",
                 table: "BlackLists",
                 column: "ApplicantId",
-                unique: true
-            );
+                unique: true);
 
-            migrationBuilder.CreateIndex(name: "IX_BootcampImages_BootcampId", table: "BootcampImages", column: "BootcampId");
+            migrationBuilder.CreateIndex(
+                name: "IX_BootcampImages_BootcampId",
+                table: "BootcampImages",
+                column: "BootcampId");
 
-            migrationBuilder.CreateIndex(name: "IX_Bootcamps_BootcampStateId", table: "Bootcamps", column: "BootcampStateId");
+            migrationBuilder.CreateIndex(
+                name: "IX_Bootcamps_BootcampStateId",
+                table: "Bootcamps",
+                column: "BootcampStateId");
 
-            migrationBuilder.CreateIndex(name: "IX_Bootcamps_InstructorId", table: "Bootcamps", column: "InstructorId");
+            migrationBuilder.CreateIndex(
+                name: "IX_Bootcamps_InstructorId",
+                table: "Bootcamps",
+                column: "InstructorId");
 
-            migrationBuilder.CreateIndex(name: "IX_EmailAuthenticators_UserId", table: "EmailAuthenticators", column: "UserId");
+            migrationBuilder.CreateIndex(
+                name: "IX_EmailAuthenticators_UserId",
+                table: "EmailAuthenticators",
+                column: "UserId");
 
-            migrationBuilder.CreateIndex(name: "IX_OtpAuthenticators_UserId", table: "OtpAuthenticators", column: "UserId");
+            migrationBuilder.CreateIndex(
+                name: "IX_OtpAuthenticators_UserId",
+                table: "OtpAuthenticators",
+                column: "UserId");
 
-            migrationBuilder.CreateIndex(name: "IX_RefreshTokens_UserId", table: "RefreshTokens", column: "UserId");
+            migrationBuilder.CreateIndex(
+                name: "IX_RefreshTokens_UserId",
+                table: "RefreshTokens",
+                column: "UserId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_UserOperationClaims_OperationClaimId",
                 table: "UserOperationClaims",
-                column: "OperationClaimId"
-            );
+                column: "OperationClaimId");
 
-            migrationBuilder.CreateIndex(name: "IX_UserOperationClaims_UserId", table: "UserOperationClaims", column: "UserId");
+            migrationBuilder.CreateIndex(
+                name: "IX_UserOperationClaims_UserId",
+                table: "UserOperationClaims",
+                column: "UserId");
         }
 
         /// <inheritdoc />
         protected override void Down(MigrationBuilder migrationBuilder)
         {
-            migrationBuilder.DropTable(name: "ApplicationInformations");
+            migrationBuilder.DropTable(
+                name: "ApplicationInformations");
 
-            migrationBuilder.DropTable(name: "BlackLists");
+            migrationBuilder.DropTable(
+                name: "BlackLists");
 
-            migrationBuilder.DropTable(name: "BootcampImages");
+            migrationBuilder.DropTable(
+                name: "BootcampImages");
 
-            migrationBuilder.DropTable(name: "EmailAuthenticators");
+            migrationBuilder.DropTable(
+                name: "EmailAuthenticators");
 
-            migrationBuilder.DropTable(name: "Employees");
+            migrationBuilder.DropTable(
+                name: "Employees");
 
-            migrationBuilder.DropTable(name: "OtpAuthenticators");
+            migrationBuilder.DropTable(
+                name: "OtpAuthenticators");
 
-            migrationBuilder.DropTable(name: "RefreshTokens");
+            migrationBuilder.DropTable(
+                name: "RefreshTokens");
 
-            migrationBuilder.DropTable(name: "UserOperationClaims");
+            migrationBuilder.DropTable(
+                name: "UserOperationClaims");
 
-            migrationBuilder.DropTable(name: "ApplicationStates");
+            migrationBuilder.DropTable(
+                name: "ApplicationStates");
 
-            migrationBuilder.DropTable(name: "Applicants");
+            migrationBuilder.DropTable(
+                name: "Applicants");
 
-            migrationBuilder.DropTable(name: "Bootcamps");
+            migrationBuilder.DropTable(
+                name: "Bootcamps");
 
-            migrationBuilder.DropTable(name: "OperationClaims");
+            migrationBuilder.DropTable(
+                name: "OperationClaims");
 
-            migrationBuilder.DropTable(name: "BootcampStates");
+            migrationBuilder.DropTable(
+                name: "BootcampStates");
 
-            migrationBuilder.DropTable(name: "Instructors");
+            migrationBuilder.DropTable(
+                name: "Instructors");
 
-            migrationBuilder.DropTable(name: "Users");
+            migrationBuilder.DropTable(
+                name: "Users");
         }
     }
 }

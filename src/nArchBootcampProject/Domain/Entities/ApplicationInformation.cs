@@ -4,16 +4,16 @@ namespace Domain.Entities;
 
 public class ApplicationInformation : Entity<int>
 {
-    public int ApplicantId { get; set; }
+    public Guid ApplicantId { get; set; }
     public int BootcampId { get; set; }
-    public int ApplicationStateId { get; set; }
+    public short ApplicationStateId { get; set; }
     public virtual Applicant? Applicant { get; set; }
     public virtual Bootcamp? Bootcamp { get; set; }
     public virtual ApplicationState? ApplicationState { get; set; }
 
     public ApplicationInformation() { }
 
-    public ApplicationInformation(int id, int applicantId, int bootcampId, int applicationStatedId)
+    public ApplicationInformation(int id, Guid applicantId, int bootcampId, short applicationStatedId)
         : this()
     {
         Id = id;
@@ -22,7 +22,7 @@ public class ApplicationInformation : Entity<int>
         ApplicationStateId = applicationStatedId;
     }
 
-    public ApplicationInformation(int applicantId, int bootcampId, int applicationStatedId)
+    public ApplicationInformation(Guid applicantId, int bootcampId, short applicationStatedId)
         : this()
     {
         ApplicantId = applicantId;

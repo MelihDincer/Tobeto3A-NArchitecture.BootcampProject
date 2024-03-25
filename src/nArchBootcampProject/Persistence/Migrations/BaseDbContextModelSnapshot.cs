@@ -31,19 +31,13 @@ namespace Persistence.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
-                    b.Property<int>("ApplicantId")
-                        .HasColumnType("int")
+                    b.Property<Guid>("ApplicantId")
+                        .HasColumnType("uniqueidentifier")
                         .HasColumnName("ApplicantId");
 
-                    b.Property<Guid?>("ApplicantId1")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<int>("ApplicationStateId")
-                        .HasColumnType("int")
+                    b.Property<short>("ApplicationStateId")
+                        .HasColumnType("smallint")
                         .HasColumnName("ApplicationStateId");
-
-                    b.Property<short?>("ApplicationStateId1")
-                        .HasColumnType("smallint");
 
                     b.Property<int>("BootcampId")
                         .HasColumnType("int")
@@ -63,9 +57,9 @@ namespace Persistence.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("ApplicantId1");
+                    b.HasIndex("ApplicantId");
 
-                    b.HasIndex("ApplicationStateId1");
+                    b.HasIndex("ApplicationStateId");
 
                     b.HasIndex("BootcampId");
 
@@ -966,16 +960,16 @@ namespace Persistence.Migrations
                     b.HasData(
                         new
                         {
-                            Id = new Guid("a4e710ab-ca17-49b3-ba34-298f6e4fe57c"),
+                            Id = new Guid("ef5e90df-12fe-41a6-b364-c96f774874ee"),
                             AuthenticatorType = 0,
-                            CreatedDate = new DateTime(2024, 3, 25, 3, 21, 30, 902, DateTimeKind.Local).AddTicks(3535),
-                            DateOfBirth = new DateTime(2024, 3, 25, 3, 21, 30, 902, DateTimeKind.Local).AddTicks(3519),
+                            CreatedDate = new DateTime(2024, 3, 25, 14, 3, 49, 696, DateTimeKind.Local).AddTicks(7564),
+                            DateOfBirth = new DateTime(2024, 3, 25, 14, 3, 49, 696, DateTimeKind.Local).AddTicks(7553),
                             Email = "narch@kodlama.io",
                             FirstName = "Melih",
                             LastName = "Dinçer",
                             NationalIdentity = "1234567",
-                            PasswordHash = new byte[] { 21, 171, 236, 154, 191, 186, 1, 215, 96, 157, 115, 67, 160, 134, 146, 229, 148, 140, 222, 21, 223, 67, 171, 144, 159, 189, 176, 34, 107, 42, 81, 77, 88, 116, 43, 134, 31, 32, 200, 112, 15, 117, 187, 22, 55, 151, 214, 199, 73, 207, 98, 173, 101, 146, 210, 167, 243, 203, 125, 31, 158, 57, 63, 83 },
-                            PasswordSalt = new byte[] { 185, 198, 207, 156, 120, 227, 28, 144, 182, 101, 74, 253, 111, 54, 255, 191, 61, 100, 138, 69, 156, 156, 99, 192, 46, 166, 164, 36, 98, 204, 108, 108, 114, 30, 82, 191, 39, 100, 129, 110, 146, 223, 196, 138, 238, 194, 63, 206, 60, 7, 183, 72, 133, 101, 241, 69, 240, 97, 199, 163, 44, 244, 21, 33, 59, 170, 225, 70, 168, 19, 17, 143, 94, 112, 211, 154, 78, 150, 168, 10, 213, 108, 50, 37, 48, 157, 222, 209, 171, 85, 238, 102, 64, 45, 134, 106, 179, 123, 145, 19, 186, 39, 171, 173, 9, 67, 179, 141, 66, 251, 17, 177, 252, 95, 214, 225, 79, 102, 97, 225, 188, 52, 58, 19, 223, 208, 52, 243 },
+                            PasswordHash = new byte[] { 228, 242, 226, 42, 194, 186, 176, 145, 66, 101, 40, 230, 162, 102, 54, 191, 237, 29, 78, 33, 74, 108, 13, 20, 194, 155, 95, 92, 21, 198, 25, 157, 3, 152, 77, 39, 37, 233, 153, 222, 53, 174, 117, 81, 70, 248, 18, 253, 168, 160, 104, 180, 112, 143, 80, 128, 10, 198, 255, 47, 32, 236, 9, 225 },
+                            PasswordSalt = new byte[] { 40, 168, 0, 48, 149, 150, 60, 35, 13, 205, 39, 215, 96, 144, 121, 14, 236, 177, 108, 249, 229, 168, 49, 196, 65, 179, 96, 119, 42, 9, 112, 127, 147, 195, 152, 33, 117, 138, 110, 201, 9, 121, 104, 157, 176, 213, 99, 55, 79, 126, 29, 109, 156, 237, 207, 183, 214, 103, 132, 225, 48, 242, 77, 0, 73, 23, 247, 157, 180, 44, 30, 39, 97, 224, 0, 135, 240, 4, 161, 12, 96, 118, 204, 239, 15, 10, 110, 112, 221, 219, 230, 131, 53, 246, 22, 9, 222, 141, 44, 77, 1, 94, 87, 38, 84, 244, 125, 155, 189, 224, 24, 145, 114, 54, 172, 0, 167, 155, 236, 52, 73, 113, 221, 183, 24, 245, 207, 235 },
                             UserName = "admin"
                         });
                 });
@@ -1018,10 +1012,10 @@ namespace Persistence.Migrations
                     b.HasData(
                         new
                         {
-                            Id = new Guid("9a623d49-0139-48a9-8e54-6a5311ed5e8b"),
+                            Id = new Guid("394f6e7c-4d57-4c41-82b7-92e0e38c1609"),
                             CreatedDate = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             OperationClaimId = 1,
-                            UserId = new Guid("a4e710ab-ca17-49b3-ba34-298f6e4fe57c")
+                            UserId = new Guid("ef5e90df-12fe-41a6-b364-c96f774874ee")
                         });
                 });
 
@@ -1065,13 +1059,15 @@ namespace Persistence.Migrations
                 {
                     b.HasOne("Domain.Entities.Applicant", "Applicant")
                         .WithMany("Applications")
-                        .HasForeignKey("ApplicantId1")
-                        .OnDelete(DeleteBehavior.Restrict);
+                        .HasForeignKey("ApplicantId")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
 
                     b.HasOne("Domain.Entities.ApplicationState", "ApplicationState")
                         .WithMany("ApplicationInformations")
-                        .HasForeignKey("ApplicationStateId1")
-                        .OnDelete(DeleteBehavior.Restrict);
+                        .HasForeignKey("ApplicationStateId")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
 
                     b.HasOne("Domain.Entities.Bootcamp", "Bootcamp")
                         .WithMany("Applications")
