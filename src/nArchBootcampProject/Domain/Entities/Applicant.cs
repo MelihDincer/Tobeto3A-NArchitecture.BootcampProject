@@ -4,11 +4,11 @@ public class Applicant : User
 {
     public string About { get; set; }
     public virtual BlackList? BlackList { get; set; }
-    public virtual ICollection<ApplicationInformation> Applications { get; set; }
+    public virtual ICollection<ApplicationInformation> ApplicationInformations { get; set; }
 
     public Applicant()
     {
-        Applications = new HashSet<ApplicationInformation>();
+        ApplicationInformations = new HashSet<ApplicationInformation>();
     }
 
     public Applicant(

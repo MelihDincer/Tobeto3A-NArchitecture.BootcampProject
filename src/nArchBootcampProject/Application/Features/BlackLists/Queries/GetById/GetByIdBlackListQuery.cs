@@ -1,4 +1,3 @@
-using Application.Features.BlackLists.Constants;
 using Application.Features.BlackLists.Rules;
 using Application.Services.Repositories;
 using AutoMapper;

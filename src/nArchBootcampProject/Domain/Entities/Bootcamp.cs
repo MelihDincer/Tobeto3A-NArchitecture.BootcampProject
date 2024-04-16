@@ -11,12 +11,12 @@ public class Bootcamp : Entity<int>
     public DateTime EndDate { get; set; }
     public virtual Instructor? Instructor { get; set; }
     public virtual BootcampState? BootcampState { get; set; }
-    public virtual ICollection<ApplicationInformation> Applications { get; set; }
+    public virtual ICollection<ApplicationInformation> ApplicationInformations { get; set; }
     public virtual ICollection<BootcampImage> BootcampImages { get; set; }
 
     public Bootcamp()
     {
-        Applications = new HashSet<ApplicationInformation>();
+        ApplicationInformations = new HashSet<ApplicationInformation>();
         BootcampImages = new HashSet<BootcampImage>();
     }
 

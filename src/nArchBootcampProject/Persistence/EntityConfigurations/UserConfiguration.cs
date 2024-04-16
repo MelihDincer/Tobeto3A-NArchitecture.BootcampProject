@@ -52,8 +52,8 @@ public class UserConfiguration : IEntityTypeConfiguration<User>
                 {
                     Id = AdminId,
                     UserName = "admin",
-                    FirstName = "Melih",
-                    LastName = "Dinçer",
+                    FirstName = "Admin",
+                    LastName = "Admin",
                     NationalIdentity = "1234567",
                     DateOfBirth = DateTime.Now,
                     Email = "narch@kodlama.io",
